@@ -31,4 +31,24 @@ describe('TodoService', () => {
         isDone: false
     }]);
   });
+
+  it('should create when call create', () => {
+    const title = 'crazy'
+    const description = 'csgo'
+    const item = service.create(title, description)
+    expect(service.items).toEqual([
+      {
+        id: 1,
+        title: 'xianke',
+        description: 'csgo',
+        isDone: false
+      },
+      {
+        id: 2,
+        title: 'crazy',
+        description: 'csgo',
+        isDone: false
+      }
+    ]);
+  });
 });
