@@ -32,4 +32,23 @@ describe('TodoService', () => {
       isDone: false,
     }])
   })
+
+  it('should create new item when call creat', () => {
+    service.create('buy bread', 'buy one basket of bread');
+
+    const items = service.getAll()
+    expect(items[1]).toEqual({
+      id: 2,
+      title: 'buy bread',
+      description: 'buy one basket of bread',
+      isDone: false,
+    })
+  })
+
+  it('shoud turn the isDone value into true when call makeDone', () => {
+
+    service.markDone(1);
+    const item = service.getAll()[0];
+    expect(item.isDone).toBeTrue
+  })
 });

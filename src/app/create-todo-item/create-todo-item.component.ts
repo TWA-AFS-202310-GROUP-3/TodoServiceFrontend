@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { TodoService } from '../services/todo.service';
 
 @Component({
@@ -11,8 +11,8 @@ export class CreateTodoItemComponent {
   constructor(private formBuilder: FormBuilder, private todoService : TodoService) {}
 
   todoForm = this.formBuilder.group({
-    title: '',
-    description: '',
+    title: ['', Validators.required],
+    description: ['', Validators.required],
   });
 
   onSubmit() {
