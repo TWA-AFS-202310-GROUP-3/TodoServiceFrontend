@@ -12,4 +12,13 @@ export class TodoHttpService {
   getAll() {
     return this.http.get<ToDoItem[]>('https://localhost:44309/ToDoItem')
   }
+
+  create() {
+    return this.http.post('https://localhost:44309/ToDoItem', {
+      id: 1,
+      title: 'buy bread',
+      description: 'buy one basket of bread',
+      isDone: false,
+    });
+  }
 }

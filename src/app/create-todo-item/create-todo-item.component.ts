@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { TodoService } from '../services/todo.service';
+import { TodoHttpService } from '../services/todo-http.service';
 
 @Component({
   selector: 'create-todo-item',
@@ -8,7 +9,12 @@ import { TodoService } from '../services/todo.service';
   styleUrls: ['./create-todo-item.component.css'],
 })
 export class CreateTodoItemComponent {
-  constructor(private formBuilder: FormBuilder, private todoService : TodoService) {}
+  @Output() created = new EventEmitter();
+
+  constructor(
+    private formBuilder: FormBuilder, 
+    private todoHttpService : TodoHttpService
+    ) {}
 
   todoForm = this.formBuilder.group({
     title: ['', Validators.required],
@@ -18,7 +24,10 @@ export class CreateTodoItemComponent {
   onSubmit() {
     const formValues = this.todoForm.value;
     if (formValues.title && formValues.description){
-      this.todoService.create(formValues.title, formValues.description)
+      this.todoHttpService.create().subscribe(() => {
+        this.todoForm.reset()
+        this.created.emit()
+      })
     }
     console.log(formValues);
   }
