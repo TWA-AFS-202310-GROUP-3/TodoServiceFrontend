@@ -1,5 +1,5 @@
-<form action="">
-    <input type="text">
-    <input type="text">
-    <button type="submit"></button>
+<form [formGroup]="todoForm" action="">
+    <input formControlName="title" type="text">
+    <input formControlName="description" type="text">
+    <button type="submit" (click)=" onSubmit()">Create</button>
 </form>
