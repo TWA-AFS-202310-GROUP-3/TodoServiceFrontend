@@ -12,7 +12,10 @@
     <td>{{item.title}}</td>
     <td>{{item.description}}</td>
     <td>{{item.isDone}}</td>
-    <button (click)="onMarkDone(item.id)" [disabled]="item.isDone"> Done </button>
-    <button> View Detail </button>
+    <td>
+      <button (click)="onMarkDone(item.id)" [disabled]="item.isDone"> Done </button>
+      <button> View Detail </button>
+    </td>
   </tr>
 </table>
+<app-create-todo></app-create-todo>
