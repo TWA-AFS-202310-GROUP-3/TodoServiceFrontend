@@ -30,6 +30,7 @@ export class CreateTodoComponent {
         .create(formValues.title, formValues.description)
         .subscribe(() => {
           this.todoForm.reset();
+          this.created.emit();
         });
     }
   }
