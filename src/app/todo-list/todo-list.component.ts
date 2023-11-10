@@ -19,8 +19,12 @@ export class TodoListComponent implements OnInit {
   }
 
   onMarkDone(id: number): void {
+    debugger
     const item = this.todoItems.find(item => item.id === id);
-    if (item) item.isDone = true;
+    if (item) {
+      item.isDone = true;
+      this.httpService.update(item.id,item).subscribe(() => this.refreshList());
+    }
   }
 
   onGoToDetail(id: number): void {
@@ -33,5 +37,6 @@ export class TodoListComponent implements OnInit {
 
   refreshList() {
     this.httpService.getAll().subscribe(todoItems => this.todoItems = todoItems);
+    console.log(this.todoItems);
   }
 }

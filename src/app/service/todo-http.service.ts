@@ -35,5 +35,9 @@ export class TodoHttpService {
     return this.httpClient.delete<ToDoItem>(`${BASE_URL}/${id}`);
   }
 
+  update(id: number, todoItem: ToDoItem): Observable<ToDoItem> {
+    return this.httpClient.put<ToDoItem>(`${BASE_URL}/${id}`, todoItem);
+  }
+
 
 }
