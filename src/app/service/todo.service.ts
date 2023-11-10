@@ -40,4 +40,11 @@ export class TodoService {
       isDone: false
     })
   }
+
+  markDone(id: number){
+    const currentItem = this.items.find(it => it.id == id)
+    if(currentItem){
+      currentItem.isDone = true
+    }
+  }
 }
