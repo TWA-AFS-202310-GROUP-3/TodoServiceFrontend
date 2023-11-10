@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { TodoService } from '../service/todo.service';
+import { TodoHttpService } from '../service/todo-http.service';
+
 
 @Component({
   selector: 'app-create-todo',
@@ -8,19 +9,22 @@ import { TodoService } from '../service/todo.service';
   styleUrls: ['./create-todo.component.css']
 })
 export class CreateTodoComponent {
+  @Output() created = new EventEmitter();
   todoForm = this.fb.group({
-    title: "",
-    description: ""
+    title: '',
+    description: ''
   });
 
-  constructor(private fb: FormBuilder, private todoService: TodoService) {
+  constructor(private fb: FormBuilder, private httpService: TodoHttpService) {
   }
 
   onSubmit(): void {
     const formValue = this.todoForm.value;
     if (formValue.title && formValue.description) {
-      this.todoService.createItem(formValue.title, formValue.description);
-      this.todoForm.reset();
+      this.httpService.create(formValue.title, formValue.description).subscribe(() => {
+        this.todoForm.reset();
+        this.created.emit();
+      });
     }
   }
 }
