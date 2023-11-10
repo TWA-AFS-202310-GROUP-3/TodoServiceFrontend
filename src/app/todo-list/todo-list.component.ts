@@ -12,8 +12,9 @@ export class TodoListComponent implements OnInit {
 
   constructor(private todoService: TodoService) {
   }
-  onComplete(id: number): void {
-    let item = this.todoItems.find(item => item.id === id);
+
+  onMarkDone(id: number): void {
+    const item = this.todoItems.find(item => item.id === id);
     if (item) item.isDone = true;
   }
 

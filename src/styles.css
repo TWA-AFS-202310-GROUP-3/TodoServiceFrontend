@@ -55,5 +55,9 @@ button:active {
   background-color: #005cbf;
 }
 
+button:disabled {
+  background-color: lightgray;
+}
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
