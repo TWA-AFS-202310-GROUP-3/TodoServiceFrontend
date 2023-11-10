@@ -42,9 +42,13 @@ export class TodoService {
   }
 
   markDone(id: number){
-    const currentItem = this.items.find(it => it.id == id)
+    const currentItem = this.items.find(it => it.id === id)
     if(currentItem){
       currentItem.isDone = true
     }
+  }
+
+  getItemById(id: number){
+    return this.items.find(it => it.id === id)
   }
 }
