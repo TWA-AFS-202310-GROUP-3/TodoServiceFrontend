@@ -1,0 +1,9 @@
+<form [formGroup]="todoForm" (ngSubmit)="onSumbit()">
+<!-- ngsumbit自动提交，提交时调用onsubmit -->
+  <input formControlName="title"/>
+  <!-- 将form值填充至title in todoForm -->
+  <!-- input / 自闭合 -->
+  <input formControlName="description"/>
+  <button type="submit">Add</button>
+  <!-- type="submit" 内置属性，直接绑定提交 -->
+</form>
