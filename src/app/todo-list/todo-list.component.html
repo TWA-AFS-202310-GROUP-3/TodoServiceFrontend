@@ -13,6 +13,11 @@
     <td>{{ item.title }}</td>
     <td>{{ item.description }}</td>
     <td>{{ item.isDone }}</td>
-    <td></td>
+    <td>
+      <button (click)="onMarkDone(item.id)" [disabled]="item.isDone">
+        Done
+      </button>
+      <!-- [disabled] disable the button when item is done -->
+    </td>
   </tr>
 </table>
