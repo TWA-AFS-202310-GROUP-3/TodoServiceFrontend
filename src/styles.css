@@ -54,3 +54,6 @@ button:hover {
 button:active {
   background-color: #005cbf;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
