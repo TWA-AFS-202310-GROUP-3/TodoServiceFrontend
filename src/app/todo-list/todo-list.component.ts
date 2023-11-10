@@ -20,7 +20,8 @@ export class TodoListComponent {
     this.items = this.todoService.getAll(); //get all items in todoService
   }
 
-  onMarkDone(id:number) {
-    this.todoService.markDone(id)
+  onMarkDone(id: number) {
+    //on开头因为是响应事件
+    this.todoService.markDone(id);
   }
 }
