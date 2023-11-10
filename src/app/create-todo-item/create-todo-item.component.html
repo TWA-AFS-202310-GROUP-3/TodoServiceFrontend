@@ -3,3 +3,6 @@
     <input required placeholder="Description" formControlName="description" type="text">
     <button type="submit">Create</button>
 </form>
+<div *ngIf="todoForm.touched && !todoForm.valid" class="alert alert-danger" role="alert">
+    A title and a description is required !
+  </div>
