@@ -37,9 +37,13 @@ export class TodoService { //替换 todoItem in todo-list component
   }
 
   markDone(id:number) {
-    const currentItem = this.items.find(i => i.id == id)
+    const currentItem = this.items.find(i => i.id === id)
     if(currentItem){ //if currentItem exist
       currentItem.isDone = true //因为currentItem是对象，所以可以const，引用没变，实际变了
     }
+  }
+
+  getItemById(id:number){
+    return this.items.find(i=>i.id === id)
   }
 }
