@@ -23,4 +23,5 @@
   </tr>
 </table>
 
-<app-create-todo></app-create-todo>
+<app-create-todo (created)="refreshList()"></app-create-todo>
+<!-- 子组件放一个事件，在监听到create的时候getall -->

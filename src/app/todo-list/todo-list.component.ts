@@ -22,11 +22,16 @@ export class TodoListComponent {
   ngOnInit() {
     //在组建load（初始化）时调用
     //this.items = this.todoService.getAll(); //get all items in todoService
+    
+    this.refreshList()
+  }
+
+  refreshList(){
     this.todoHttpService.getAll().subscribe((todoItems) => {
       this.items = todoItems; //拿到数据流，用subscribe将todoItems(从后端拿到的)，将其赋值给this.items
     });
-  }
 
+  }
   onMarkDone(id: number) {
     //on开头因为是响应事件
     this.todoService.markDone(id);
