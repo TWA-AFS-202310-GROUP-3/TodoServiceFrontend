@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { TodoService } from '../service/todo.service';
 
 @Component({
   selector: 'app-create-todo',
@@ -8,16 +9,19 @@ import { FormBuilder } from '@angular/forms';
 })
 export class CreateTodoComponent {
   todoForm = this.fb.group({
-    title: '',
-    description: ''
+    title: "",
+    description: ""
   });
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private todoService: TodoService) {
   }
 
   onSubmit(): void {
     const formValue = this.todoForm.value;
-    console.log(formValue);
+    if (formValue.title && formValue.description) {
+      this.todoService.create(formValue.title, formValue.description);
+      this.todoForm.reset();
+    }
   }
 }
 

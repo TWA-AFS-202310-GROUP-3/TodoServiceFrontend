@@ -12,6 +12,6 @@
     <td>{{item.title}}</td>
     <td>{{item.description}}</td>
     <td>{{item.isDone}}</td>
-    <button (click)="onComplete(item.id)" [disabled]="item.isDone"> Done </button>
+    <button (click)="onComplete(item.id)" disabled="item.isDone"> Done </button>
   </tr>
 </table>

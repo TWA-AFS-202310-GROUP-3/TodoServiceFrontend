@@ -20,4 +20,15 @@ export class TodoService {
     }
   ];
   constructor() { }
+  getAll():ToDoItem[] {
+    return this.todoItems;
+  }
+  create(title: string, description: string):void {
+    this.todoItems.push({
+      id:this.todoItems.length+1,
+      title: title,
+      description: description,
+      isDone: false
+    })
+  }
 }

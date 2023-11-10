@@ -18,6 +18,6 @@ export class TodoListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.todoItems = this.todoService.todoItems;
+    this.todoItems = this.todoService.getAll();
   }
 }
