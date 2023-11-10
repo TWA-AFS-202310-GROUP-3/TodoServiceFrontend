@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ToDoItem } from 'src/model/ToDoItem';
 import { TodoService } from '../services/todo.service';
 import { Router } from '@angular/router';
+import { TodoHttpService } from '../services/todo-http.service';
 
 @Component({
   selector: 'todo-list',
@@ -11,10 +12,16 @@ import { Router } from '@angular/router';
 export class TodoListComponent {
   items: ToDoItem[] = [];
 
-  constructor(private todoService : TodoService, private router : Router){}
+  constructor(
+    private todoService : TodoService, 
+    private router : Router,
+    private http : TodoHttpService
+    ){}
 
   ngOnInit() {
-    this.items = this.todoService.getAll();
+    this.http.getAll().subscribe(res => {
+      this.items = res
+    });
   }
 
   onMarkDone(id : number){
@@ -24,4 +31,6 @@ export class TodoListComponent {
   onGoToDetail(id : number){
     this.router.navigateByUrl(`/detail/${id}`);
   }
+
+
 }
