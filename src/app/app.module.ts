@@ -7,6 +7,7 @@ import { TodoListComponent } from './todo-list/todo-list.component';
 import { CreateTodoComponent } from './create-todo/create-todo.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TodoDetailComponent } from './todo-detail/todo-detail.component';
+import { HttpClientModule } from '@angular/common/http';
 //入口文件
 @NgModule({
   //引入模块
@@ -20,6 +21,7 @@ import { TodoDetailComponent } from './todo-detail/todo-detail.component';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule, //用于创建表单
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
