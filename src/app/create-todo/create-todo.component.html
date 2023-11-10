@@ -1,5 +1,5 @@
-<form>
-    <input/>
-    <input/>
-    <button type="submit"></button>
+<form [formGroup]="todoForm" (ngSubmit)="onSubmit()">
+  <input formControlName="title" />
+  <input formControlName="description" />
+  <button type="submit">create</button>
 </form>
