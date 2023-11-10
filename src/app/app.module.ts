@@ -6,19 +6,22 @@ import { AppComponent } from './app.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { CreateTodoComponent } from './create-todo/create-todo.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TodoDetailComponent } from './todo-detail/todo-detail.component';
 //入口文件
 @NgModule({
+  //引入模块
   declarations: [
     AppComponent,
     TodoListComponent,
-    CreateTodoComponent
+    CreateTodoComponent,
+    TodoDetailComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule //用于创建表单
+    ReactiveFormsModule, //用于创建表单
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
