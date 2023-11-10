@@ -46,7 +46,7 @@ describe('TodoHttpService',
 
     it('should get one todo items when call getItemById', () => {
       httpClientSpy.get.and.returnValue(asyncData(
-        [fakeItem1]
+        fakeItem1
       ));
       service.get(0).subscribe(data => {
         expect(data.id).toEqual(fakeItem1.id);
@@ -64,6 +64,7 @@ describe('TodoHttpService',
     });
 
     it('should delete one todo items when call delete', () => {
+      httpClientSpy.delete.and.returnValue(asyncData(fakeItem1));
       service.delete(0).subscribe();
       expect(httpClientSpy.delete).toHaveBeenCalledTimes(1);
     });
