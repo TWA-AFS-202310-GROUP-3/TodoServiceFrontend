@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { TodoService } from '../service/todo.service';
 
 @Component({
   selector: 'app-create-todo',
@@ -7,7 +8,10 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./create-todo.component.css'],
 })
 export class CreateTodoComponent {
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private todoService: TodoService
+  ) {}
 
   todoForm = this.formBuilder.group({
     title: '',
@@ -16,7 +20,11 @@ export class CreateTodoComponent {
 
   onSumbit() {
     const formValues = this.todoForm.value; //.value get value in form
-
-    console.log(formValues); //print value in form
+    if (formValues.title && formValues.description) {
+      //if both title and des have value
+      this.todoService.create(formValues.title, formValues.description);
+    }
+    this.todoForm.reset()
+    //console.log(formValues); //print value in form
   }
 }

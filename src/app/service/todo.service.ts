@@ -26,4 +26,13 @@ export class TodoService { //替换 todoItem in todo-list component
   getAll(){
     return this.items
   }
+
+  create(title:string,description:string) {
+    this.items.push({
+      id:this.items.length+1,
+      title:title,
+      description:description,
+      isDone:false
+    })
+  }
 }

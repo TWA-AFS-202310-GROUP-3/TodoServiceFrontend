@@ -10,7 +10,8 @@ import { TodoService } from '../service/todo.service';
 export class TodoListComponent {
   items: ToDoItem[] = [];
 
-  constructor( //注入todoService
+  constructor( //constructor将需要用的属性加进来
+    //注入todoService
     private todoService: TodoService
   ) {}
   ngOnInit(){ //在组建load（初始化）时调用
