@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
 import { ToDoItem } from '../../model/ToDoItem';
 
 @Component({
@@ -22,10 +21,8 @@ export class TodoListComponent {
       isDone: false
     }
   ];
-  constructor(private fb: FormBuilder) {
-  }
 
-  onComplete(id:number):void {
+  onComplete(id: number): void {
     let item = this.todoItems.find(item => item.id === id);
     if (item) item.isDone = true;
   }
