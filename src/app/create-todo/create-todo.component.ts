@@ -25,6 +25,6 @@ export class CreateTodoComponent {
       this.todoService.create(formValues.title, formValues.description);
     }
     this.todoForm.reset()
-    //console.log(formValues); //print value in form
+    //console.log(formValues); //print value in log in F12
   }
 }
