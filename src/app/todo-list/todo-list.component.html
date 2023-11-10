@@ -14,7 +14,7 @@
     <td>{{item.isDone}}</td>
     <td>
       <button (click)="onMarkDone(item.id)" [disabled]="item.isDone"> Done </button>
-      <button> View Detail </button>
+      <button [routerLink]="['/detail/',item.id]"> View Detail </button>
     </td>
   </tr>
 </table>
