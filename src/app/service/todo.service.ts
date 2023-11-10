@@ -23,7 +23,12 @@ export class TodoService {
   getAll():ToDoItem[] {
     return this.todoItems;
   }
-  create(title: string, description: string):void {
+
+  public markDone(id: number): void {
+    const item = this.todoItems.find(item => item.id === id);
+    if (item) item.isDone = true;
+  }
+  createItem(title: string, description: string):void {
     this.todoItems.push({
       id:this.todoItems.length+1,
       title: title,

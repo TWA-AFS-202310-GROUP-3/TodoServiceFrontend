@@ -12,13 +12,11 @@ export class TodoListComponent implements OnInit {
 
   constructor(private todoService: TodoService) {
   }
-
-  onMarkDone(id: number): void {
-    const item = this.todoItems.find(item => item.id === id);
-    if (item) item.isDone = true;
-  }
-
   ngOnInit(): void {
     this.todoItems = this.todoService.getAll();
+  }
+
+  onMarkDone(id: number): void{
+    this.todoService.markDone(id);
   }
 }

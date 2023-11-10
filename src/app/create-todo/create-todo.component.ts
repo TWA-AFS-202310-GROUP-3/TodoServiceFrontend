@@ -19,7 +19,7 @@ export class CreateTodoComponent {
   onSubmit(): void {
     const formValue = this.todoForm.value;
     if (formValue.title && formValue.description) {
-      this.todoService.create(formValue.title, formValue.description);
+      this.todoService.createItem(formValue.title, formValue.description);
       this.todoForm.reset();
     }
   }
