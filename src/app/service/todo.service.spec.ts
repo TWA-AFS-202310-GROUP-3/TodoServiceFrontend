@@ -35,7 +35,7 @@ describe('TodoService', () => {
     ]);
   });
 
-  it('should create new item when call create', () => {
+  it('should create new item when call create()', () => {
     service.create('buy bread', 'buy some bread');
 
     expect(service.items).toEqual([
@@ -52,5 +52,10 @@ describe('TodoService', () => {
         isDone: false,
       },
     ]);
+  });
+
+  it('should mark item as done when call markDone()', () => {
+    service.markDone(1);
+    expect(service.items[0].isDone).toEqual(true);
   });
 });
