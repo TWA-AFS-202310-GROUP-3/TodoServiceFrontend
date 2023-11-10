@@ -1,1 +1,10 @@
-<p>todo-detail works!</p>
+<div>ToDoDetail</div>
+<!-- <div>Id: {{item?.id}}</div> -->
+<!-- add?: can be undefined -->
+<div *ngIf="item">
+    <!-- if id exist -->
+    <div>Id: {{item.id}}</div>
+    <div>Title: {{item.title}}</div>
+    <div>Description: {{item.description}}</div>
+    <div>Done: {{item.isDone}}</div>
+</div>
