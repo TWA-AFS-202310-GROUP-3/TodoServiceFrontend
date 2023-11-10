@@ -8,16 +8,14 @@ import { TodoService } from '../service/todo.service';
   templateUrl: './todo-detail.component.html',
   styleUrls: ['./todo-detail.component.css']
 })
-export class TodoDetailComponent implements OnInit{
+export class TodoDetailComponent implements OnInit {
   item: ToDoItem | undefined = undefined;
+
   constructor(private activatedRouter: ActivatedRoute, private todoService: TodoService) {
   }
 
   ngOnInit(): void {
-    const id = this.activatedRouter.snapshot.paramMap.get("detailId");
-    console.log(id);
+    const id = this.activatedRouter.snapshot.paramMap.get('detailId');
     this.item = this.todoService.getItemById(Number(id));
   }
-
-
 }

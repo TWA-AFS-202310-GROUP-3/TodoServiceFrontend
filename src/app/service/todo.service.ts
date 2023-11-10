@@ -19,8 +19,11 @@ export class TodoService {
       isDone: false
     }
   ];
-  constructor() { }
-  getAll():ToDoItem[] {
+
+  constructor() {
+  }
+
+  getAll(): ToDoItem[] {
     return this.todoItems;
   }
 
@@ -28,14 +31,16 @@ export class TodoService {
     const item = this.todoItems.find(item => item.id === id);
     if (item) item.isDone = true;
   }
-  public createItem(title: string, description: string):void {
+
+  public createItem(title: string, description: string): void {
     this.todoItems.push({
-      id:this.todoItems.length+1,
+      id: this.todoItems.length + 1,
       title: title,
       description: description,
       isDone: false
-    })
+    });
   }
+
   public getItemById(id: number): ToDoItem | undefined {
     const item = this.todoItems.find(item => item.id === id);
     if (item) return item;

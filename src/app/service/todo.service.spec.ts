@@ -39,4 +39,14 @@ describe('TodoService', () => {
     service.markDone(1);
     expect(service.todoItems[0].isDone).toBeTrue();
   });
+
+  it('should get item when getItemById given valid', () => {
+    service.getItemById(1);
+    expect(service.todoItems[0]).toEqual({
+      id: 1,
+      title: 'buy milk',
+      description: 'buy some milk',
+      isDone: false
+    })
+  });
 });
