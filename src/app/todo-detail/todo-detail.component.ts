@@ -45,6 +45,5 @@ export class TodoDetailComponent implements OnInit {
       this.todoService.update(this.item.id, this.item).subscribe(() => {
       });
     }
-
   }
 }
