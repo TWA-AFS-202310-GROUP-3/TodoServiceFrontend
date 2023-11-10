@@ -51,4 +51,16 @@ describe('TodoService', () => {
       }
     ]);
   });
+
+  it('should isDone is true when call markDone', () => {
+    const item = service.markDone(1)
+    expect(service.items).toEqual([
+      {
+        id: 1,
+        title: 'xianke',
+        description: 'csgo',
+        isDone: true
+      }
+    ]);
+  });
 });
