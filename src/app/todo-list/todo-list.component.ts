@@ -28,7 +28,12 @@ export class TodoListComponent {
   }
 
   onMarkDone(id: number){
-    this.todoService.markDone(id)
+    //this.todoService.markDone(id)
+    let searchItem = this.items.find(_ => _.id === id)
+    if(searchItem){
+      searchItem.isDone = true
+      this.todoHttpService.updateItem(searchItem).subscribe(()=>this.refreshList())
+    }
   }
   
   onGoToDetail(id: number){
