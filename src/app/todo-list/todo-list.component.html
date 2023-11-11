@@ -12,8 +12,11 @@
     <td>{{ item.title }}</td>
     <td>{{ item.description }}</td>
     <td>{{ item.isDone }}</td>
-    <td><button (click)="onMarkDone(item.id)" [disabled]="item.isDone">Done</button>
-    <button (click)="onGoToDetail(item.id)">View Detail</button></td>
+    <td>
+      <button (click)="onMarkDone(item.id)" [disabled]="item.isDone">Done</button>
+      <button (click)="onGoToDetail(item.id)">View Detail</button>
+      <button (click)="onDelete(item.id)">Delete</button>
+    </td>
   </tr>
 </table>
 

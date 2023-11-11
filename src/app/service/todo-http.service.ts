@@ -28,4 +28,9 @@ export class TodoHttpService {
   getItemById(id: number) {
     return this.httpClient.get<ToDoItem>(`https://localhost:44309/ToDoItem/${id}`)
   }
+
+  deleteItem(id: number) {
+    console.log('hahah')
+    return this.httpClient.delete<ToDoItem>(`https://localhost:44309/ToDoItem/${id}`)
+  }
 }

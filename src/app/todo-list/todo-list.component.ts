@@ -32,11 +32,15 @@ export class TodoListComponent {
     let searchItem = this.items.find(_ => _.id === id)
     if(searchItem){
       searchItem.isDone = true
-      this.todoHttpService.updateItem(searchItem).subscribe(()=>this.refreshList())
+      this.todoHttpService.updateItem(searchItem).subscribe(() => this.refreshList())
     }
   }
   
   onGoToDetail(id: number){
     this.router.navigateByUrl(`/detail/${id}`)
+  }
+
+  onDelete(id: number){
+    this.todoHttpService.deleteItem(id).subscribe(() => this.refreshList())
   }
 }
