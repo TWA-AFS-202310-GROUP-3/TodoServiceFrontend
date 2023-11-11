@@ -84,4 +84,17 @@ describe('TodoHttpService', () => {
     })
     expect(httpClientSpy.get.calls.count()).toEqual(1)
   });
+
+  it('should delete todo item when call deleteItem', () => {
+    httpClientSpy.delete.and.returnValue(asyncData([
+      {
+        id: 1,
+        title: 'xianke',
+        description: 'csgo',
+        isDone: false
+      }
+    ]))
+    service.deleteItem(0)
+    expect(httpClientSpy.delete.calls.count()).toEqual(1)
+  });
 });
