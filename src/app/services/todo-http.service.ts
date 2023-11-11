@@ -21,4 +21,14 @@ export class TodoHttpService {
       isDone: false,
     });
   }
+
+  getById(id : string){
+    return this.http.get<ToDoItem>(`https://localhost:44309/ToDoItem/${id}`)
+  }
+
+  delete(id : number) {
+    return this.http.delete(`https://localhost:44309/ToDoItem/${id}`);
+  }
+
+  
 }

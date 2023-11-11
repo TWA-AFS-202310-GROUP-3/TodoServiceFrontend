@@ -15,6 +15,7 @@
         <td>
             <button [disabled]="item.isDone" (click)="onMarkDone(item.id)">Done</button>
             <button (click)="onGoToDetail(item.id)">View Detail</button>
+            <button (click)="onDelete(item.id)" class="delete">Delete</button>
         </td>
     </tr>
 </table>

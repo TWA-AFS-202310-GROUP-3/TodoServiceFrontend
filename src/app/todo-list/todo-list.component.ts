@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ToDoItem } from 'src/model/ToDoItem';
-import { TodoService } from '../services/todo.service';
 import { Router } from '@angular/router';
 import { TodoHttpService } from '../services/todo-http.service';
 
@@ -13,7 +12,6 @@ export class TodoListComponent {
   items: ToDoItem[] = [];
 
   constructor(
-    private todoService : TodoService, 
     private router : Router,
     private http : TodoHttpService
     ){}
@@ -23,7 +21,7 @@ export class TodoListComponent {
   }
 
   onMarkDone(id : number){
-    this.todoService.markDone(id)
+    throw new Error("Method not implemented.");
   }
 
   onGoToDetail(id : number){
@@ -36,4 +34,9 @@ export class TodoListComponent {
     });
   }
 
+  onDelete(id : number) {
+    this.http.delete(id).subscribe(res => {
+      this.onRreshList();
+    });
+  }
 }
