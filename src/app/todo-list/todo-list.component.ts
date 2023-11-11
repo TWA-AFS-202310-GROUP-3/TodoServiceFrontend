@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ToDoItem } from 'src/model/ToDoItem';
-import { TodoService } from '../service/todo.service';
+// import { TodoService } from '../service/todo.service';
 import { Route, Router } from '@angular/router';
 import { TodoHttpService } from '../service/todo-http.service';
 
@@ -12,7 +12,7 @@ import { TodoHttpService } from '../service/todo-http.service';
 export class TodoListComponent {
   items: ToDoItem[] = []
 
-  constructor(private todoService: TodoService,
+  constructor(
     private router: Router,
     private todoHttpService: TodoHttpService){}
 
