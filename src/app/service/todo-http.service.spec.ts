@@ -70,18 +70,18 @@ describe('TodoHttpService', () => {
     expect(httpClientSpy.put.calls.count()).toEqual(1)
   });
 
-  // it('should return todoitem when call getItemById', () => {
-  //   httpClientSpy.get.and.returnValue(asyncData([
-  //     {
-  //       id: 1,
-  //       title: 'xianke',
-  //       description: 'csgo',
-  //       isDone: false
-  //     }
-  //   ]))
-  //   service.getAll().subscribe((data) => {
-  //     expect(data.length).toEqual(1);
-  //   })
-  //   expect(httpClientSpy.get.calls.count()).toEqual(1)
-  // });
+  it('should return todoitem when call getItemById', () => {
+    httpClientSpy.get.and.returnValue(asyncData([
+      {
+        id: 1,
+        title: 'xianke',
+        description: 'csgo',
+        isDone: false
+      }
+    ]))
+    service.getAll().subscribe((data) => {
+      expect(data.length).toEqual(1);
+    })
+    expect(httpClientSpy.get.calls.count()).toEqual(1)
+  });
 });
