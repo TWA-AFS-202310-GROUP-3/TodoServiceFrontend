@@ -16,7 +16,7 @@ export class TodoDetailComponent {
   
 
   constructor(private activatedRoute: ActivatedRoute,
-    private todoService: TodoService, 
+    // private todoService: TodoService, 
     private todoHttpService: TodoHttpService, 
     private formBuilder: FormBuilder){}
 

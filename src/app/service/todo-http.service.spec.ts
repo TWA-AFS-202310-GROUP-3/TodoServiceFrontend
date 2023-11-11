@@ -14,7 +14,7 @@ describe('TodoHttpService', () => {
 
   beforeEach(() => {
     //TestBed.configureTestingModule({});
-    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get'])
+    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'post', 'put', 'delete'])
     service = new TodoHttpService(httpClientSpy);
   });
 
@@ -25,10 +25,10 @@ describe('TodoHttpService', () => {
   it('should get all todo items when call getAll', () => {
     httpClientSpy.get.and.returnValue(asyncData([
       {
-        "id": 0,
-        "title": "Home work",
-        "description": "Have to complete home work",
-        "isDone": false
+        id: 1,
+        title: 'xianke',
+        description: 'csgo',
+        isDone: false
       }
     ]))
 
@@ -38,4 +38,50 @@ describe('TodoHttpService', () => {
     expect(httpClientSpy.get.calls.count()).toEqual(1)
 
   });
+
+  it('should create todoitem when call create', () => {
+    httpClientSpy.post.and.returnValue(asyncData([
+      {
+        id: 1,
+        title: 'xianke',
+        description: 'csgo',
+        isDone: false
+      }
+    ]))
+    service.create('xianke', 'csgo').subscribe()
+    expect(httpClientSpy.post.calls.count()).toEqual(1)
+  });
+
+  it('should update todoitem when call updateItem', () => {
+    httpClientSpy.put.and.returnValue(asyncData([
+      {
+        id: 1,
+        title: 'xianke',
+        description: 'csgo',
+        isDone: false
+      }
+    ]))
+    service.updateItem({
+      id: 1,
+      title: 'xianke',
+      description: 'csgo',
+      isDone: false
+    })
+    expect(httpClientSpy.put.calls.count()).toEqual(1)
+  });
+
+  // it('should return todoitem when call getItemById', () => {
+  //   httpClientSpy.get.and.returnValue(asyncData([
+  //     {
+  //       id: 1,
+  //       title: 'xianke',
+  //       description: 'csgo',
+  //       isDone: false
+  //     }
+  //   ]))
+  //   service.getAll().subscribe((data) => {
+  //     expect(data.length).toEqual(1);
+  //   })
+  //   expect(httpClientSpy.get.calls.count()).toEqual(1)
+  // });
 });
