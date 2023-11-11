@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { TodoHttpService } from '../services/todo-http.service';
+import { ToDoItem } from 'src/model/ToDoItem';
 
 @Component({
   selector: 'create-todo-item',
@@ -23,7 +24,13 @@ export class CreateTodoItemComponent {
   onSubmit() {
     const formValues = this.todoForm.value;
     if (formValues.title && formValues.description){
-      this.todoHttpService.create().subscribe(() => {
+      const item : ToDoItem = {
+        id : 0,
+        title : formValues.title,
+        description : formValues.description,
+        isDone : false
+      }
+      this.todoHttpService.create(item).subscribe(() => {
         this.todoForm.reset()
         this.created.emit()
       })

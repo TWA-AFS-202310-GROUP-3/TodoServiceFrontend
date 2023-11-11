@@ -13,13 +13,8 @@ export class TodoHttpService {
     return this.http.get<ToDoItem[]>('https://localhost:44309/ToDoItem')
   }
 
-  create() {
-    return this.http.post('https://localhost:44309/ToDoItem', {
-      id: 1,
-      title: 'buy bread',
-      description: 'buy one basket of bread',
-      isDone: false,
-    });
+  create(item : ToDoItem) {
+    return this.http.post('https://localhost:44309/ToDoItem', item);
   }
 
   getById(id : string){
@@ -30,5 +25,7 @@ export class TodoHttpService {
     return this.http.delete(`https://localhost:44309/ToDoItem/${id}`);
   }
 
-  
+  update(id : number, item : ToDoItem) {
+    return this.http.put(`https://localhost:44309/ToDoItem/${id}`, item);
+  }
 }
