@@ -12,7 +12,6 @@ export class CreateTodoComponent {
   @Output() created = new EventEmitter();
   constructor(
     private formBuilder: FormBuilder,
-    private todoService: TodoService,
     private todoHttpService: TodoHttpService
   ) {}
   todoForm = this.formBuilder.group({
@@ -23,8 +22,6 @@ export class CreateTodoComponent {
   onSubmit() {
     const formValues = this.todoForm.value;
     if (formValues.title && formValues.description) {
-      // this.todoService.create(formValues.title, formValues.description);
-      // this.todoForm.reset();
       this.todoHttpService
         .create(formValues.title, formValues.description)
         .subscribe(() => {

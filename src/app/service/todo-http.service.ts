@@ -11,6 +11,10 @@ export class TodoHttpService {
     return this.httpClient.get<ToDoItem[]>(`https://localhost:44309/ToDoItems`);
   }
 
+  getItemById(id: number){
+    return this.httpClient.get<ToDoItem>(`https://localhost:44309/ToDoItems/${id}`);
+  }
+
   create(title: string, description: string) {
     return this.httpClient.post(`https://localhost:44309/ToDoItems`, {
       title: title,
@@ -19,7 +23,7 @@ export class TodoHttpService {
     });
   }
 
-  delete(id: string) {
+  delete(id: number) {
     return this.httpClient.delete<ToDoItem>(`https://localhost:44309/ToDoItems/${id}`);
   }
 }
