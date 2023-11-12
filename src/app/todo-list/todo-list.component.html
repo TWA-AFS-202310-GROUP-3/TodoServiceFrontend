@@ -14,6 +14,7 @@
     <td>{{ item.isDone }}</td>
     <button (click)="onMarkDone(item.id)" [disabled]="item.isDone">Done</button>
     <button (click)="onGoToDetail(item.id)">View Detial</button>
+    <button (click)="onDeleteItem(item.id)">Delete</button>
   </tr>
 </table>
 

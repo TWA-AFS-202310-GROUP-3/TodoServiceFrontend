@@ -34,4 +34,10 @@ export class TodoListComponent {
   onGoToDetail(id: number) {
     this.router.navigateByUrl(`/detail/${id}`);
   }
+
+  onDeleteItem(id: number) {
+    this.todoHttpService.deleteItemById(id).subscribe(() => {
+      this.refreshList();
+    });
+  }
 }
