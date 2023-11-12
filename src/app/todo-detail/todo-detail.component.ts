@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToDoItem } from 'src/model/ToDoItem';
-import { TodoService } from '../service/todo.service';
 import { TodoHttpService } from '../service/todo-http.service';
 import { FormBuilder } from '@angular/forms';
 
@@ -30,7 +29,6 @@ export class TodoDetailComponent {
     console.log(id);
     this.todoHttpService.getItemById(Number(id)).subscribe((item) => {
       this.item = item;
-      console.log('init', item.isDone);
       this.todoForm.setValue({
         id: item.id,
         title: item.title,
@@ -44,7 +42,6 @@ export class TodoDetailComponent {
   onUpdate() {
     const formValues = this.todoForm.value;
     if (this.item && formValues.title && formValues.description) {
-      console.log('update', this.item.isDone);
       this.item.title = formValues.title;
       this.item.description = formValues.description;
       this.todoHttpService.update(this.item.id, this.item).subscribe();
