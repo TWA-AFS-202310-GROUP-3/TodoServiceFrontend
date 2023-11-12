@@ -13,32 +13,32 @@ export class TodoListComponent {
   items: ToDoItem[] = [];
 
   constructor(
-    //constructor将需要用的属性加进来
-    //注入todoService
     private todoService: TodoService,
     private router: Router,
     private todoHttpService: TodoHttpService
   ) {}
   ngOnInit() {
-    //在组建load（初始化）时调用
-    //this.items = this.todoService.getAll(); //get all items in todoService
     
     this.refreshList()
   }
 
   refreshList(){
-    this.todoHttpService.getAll().subscribe((todoItems) => {
-      this.items = todoItems; //拿到数据流，用subscribe将todoItems(从后端拿到的)，将其赋值给this.items
+    this.todoHttpService.getAll().subscribe((todoItems: ToDoItem[]) => {
+      this.items = todoItems;
     });
 
   }
   onMarkDone(id: number) {
-    //on开头因为是响应事件
     this.todoService.markDone(id);
   }
 
   onGoToDetail(id: number) {
-    this.router.navigateByUrl(`/detail/${id}`); //use router to direct url
-    //need to use `` instead of '',otherwise will recognise id just as id
+    this.router.navigateByUrl(`/detail/${id}`);
   }
+
+  onDelete(id:number){
+    this.todoHttpService.delete(id).subscribe(()=>this.refreshList)
+  }
+
+  
 }
