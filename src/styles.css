@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-table {
+table { /*no.table, bc input in all default component */
   border-collapse: collapse;
 }
 
@@ -53,4 +53,8 @@ button:hover {
 
 button:active {
   background-color: #005cbf;
+}
+
+button[disabled]{
+  background-color: gray;
 }

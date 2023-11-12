@@ -1,0 +1,29 @@
+<h2>ToDoList</h2>
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Title</th>
+    <th>Description</th>
+    <th>IsDone</th>
+    <th>Action</th>
+    <!-- tr:one line;th:header,td:one unit box -->
+  </tr>
+  <tr *ngFor="let item of items">
+    <td>{{ item.id }}</td>
+    <td>{{ item.title }}</td>
+    <td>{{ item.description }}</td>
+    <td>{{ item.isDone }}</td>
+    <td>
+      <button (click)="onMarkDone(item.id)" [disabled]="item.isDone">
+        Done
+      </button>
+      <!-- [disabled] disable the button when item is done -->
+      <button (click)="onGoToDetail(item.id)">ViewDetail</button>
+      <button (click)="onDelete(item.id)">Delete</button>
+    </td>
+  </tr>
+</table>
+
+<app-create-todo (created)="refreshList()"></app-create-todo>
+<!-- 子组件放一个事件，在监听到create的时候getall -->
+
