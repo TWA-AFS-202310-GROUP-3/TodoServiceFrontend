@@ -105,7 +105,32 @@ describe('TodoHttpService', () => {
     expect(httpClientSpy.delete).toHaveBeenCalled()
   })
 
-  
+  it('should return the updated item when call update given id and new item', () => {
+    httpClientSpy = jasmine.createSpyObj('HttpClient', ['put'])
+    service = new TodoHttpService(httpClientSpy)
+    const postItem = {
+      id: 1,
+      title: "buy milk",
+      description : "buy a bottle of milk",
+      isDone: false
+    }
+    const expectedResponse = {
+      id: 1,
+      title: "buy milk",
+      description : "buy a bottle of milk",
+      isDone: false
+    }
+    const mockId = 1
+    const url = `https://localhost:44309/ToDoItem/${mockId}`
+
+    httpClientSpy.put.and.returnValue(asyncData(postItem))
+
+    service.update(mockId, postItem).subscribe(res => {
+      expect(res).toEqual(expectedResponse)
+    })
+    expect(httpClientSpy.put).toHaveBeenCalledWith(url, postItem)
+    
+  })
 
   
 });
