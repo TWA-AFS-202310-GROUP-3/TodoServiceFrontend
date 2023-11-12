@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToDoItem } from 'src/model/ToDoItem';
 import { TodoHttpService } from '../service/todo-http.service';
 
@@ -16,6 +16,7 @@ export class TodoDetailComponent {
   itemDone:boolean | undefined
 
   constructor(private activatedRouter:ActivatedRoute,
+    private router: Router,
     private todoHttpService: TodoHttpService){}
 
   ngOnInit(){
@@ -37,6 +38,8 @@ export class TodoDetailComponent {
       title: this.itemTitle!,
       isDone: this.itemDone!,
     }
-    this.todoHttpService.update(updatedItem.id, updatedItem)
+    this.todoHttpService.update(updatedItem.id, updatedItem).subscribe(()=>{
+      this.router.navigateByUrl('');
+    })
   }
 }

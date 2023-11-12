@@ -27,7 +27,13 @@ export class TodoListComponent {
 
   }
   onMarkDone(id: number) {
-    //this.todoService.markDone(id);
+    const item = this.items.find(item => item.id === id)
+    if (item) {
+      item.isDone = true;
+      this.todoHttpService.update(id, item).subscribe(() => {
+        this.refreshList()
+      })
+    }
   }
 
   onGoToDetail(id: number) {
@@ -36,7 +42,7 @@ export class TodoListComponent {
 
   onDelete(id:number){
     this.todoHttpService.delete(id).subscribe(()=>{
-      this.refreshList
+      this.refreshList()
     })
   }
   

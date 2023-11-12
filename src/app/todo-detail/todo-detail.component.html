@@ -2,7 +2,11 @@
 <div *ngIf="item">
     <!-- if id exist -->
     <div>Id: {{item.id}}</div>
-    <div>Title: <input [value]="item.title"></div>
-    <div>Description: {{item.description}}</div>
+    <!-- [value] only display the value, so input fields are not reflected back to the component's properties. 
+        need to use two way binding to make change -->
+    <div>Title: <input [(ngModel)]="itemTitle"></div>
+    <div>Description: <input [(ngModel)]="itemDescription"></div>
     <div>Done: {{item.isDone}}</div>
+    <button (click)="onUpdate()">Update</button>
 </div>
+
