@@ -11,8 +11,10 @@ export class TodoHttpService {
     return this.httpClient.get<ToDoItem[]>(`https://localhost:44309/ToDoItems`);
   }
 
-  getItemById(id: number){
-    return this.httpClient.get<ToDoItem>(`https://localhost:44309/ToDoItems/${id}`);
+  getItemById(id: number) {
+    return this.httpClient.get<ToDoItem>(
+      `https://localhost:44309/ToDoItems/${id}`
+    );
   }
 
   create(title: string, description: string) {
@@ -24,6 +26,15 @@ export class TodoHttpService {
   }
 
   delete(id: number) {
-    return this.httpClient.delete<ToDoItem>(`https://localhost:44309/ToDoItems/${id}`);
+    return this.httpClient.delete<ToDoItem>(
+      `https://localhost:44309/ToDoItems/${id}`
+    );
+  }
+
+  update(todoItem: ToDoItem) {
+    return this.httpClient.put<ToDoItem>(
+      `https://localhost:44309/ToDoItems/${todoItem.id}`,
+      todoItem
+    );
   }
 }
