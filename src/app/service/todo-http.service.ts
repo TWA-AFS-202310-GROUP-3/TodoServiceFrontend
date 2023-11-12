@@ -25,5 +25,11 @@ export class TodoHttpService {
     return this.httpClient.delete(`${this.todoItemURL}+${id}`);
   }
 
-  
+  update(id: number, todoItem:ToDoItem){
+    return this.httpClient.put(`${this.todoItemURL}+${id}`, todoItem)
+  }
+
+  getById(id: number) {
+    return this.httpClient.get<ToDoItem>(`${this.todoItemURL}+${id}`);
+  }
 }
