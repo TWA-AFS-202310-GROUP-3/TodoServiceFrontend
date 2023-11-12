@@ -21,7 +21,13 @@ export class TodoListComponent {
   }
 
   onMarkDone(id : number){
-    throw new Error("Method not implemented.");
+    const item = this.items.find(item => item.id === id)
+    if (item) {
+      item.isDone = true;
+      this.http.update(id, item).subscribe(res => {
+        this.onRreshList()
+      })
+    }
   }
 
   onGoToDetail(id : number){

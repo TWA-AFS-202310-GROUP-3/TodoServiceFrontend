@@ -35,6 +35,5 @@ export class CreateTodoItemComponent {
         this.created.emit()
       })
     }
-    console.log(formValues);
   }
 }

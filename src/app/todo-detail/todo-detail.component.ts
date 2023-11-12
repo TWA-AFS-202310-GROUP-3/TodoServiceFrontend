@@ -42,6 +42,7 @@ export class TodoDetailComponent {
       isDone : this.item_isDone
     }
     this.http.update(Number(this.item_id), updatedItem).subscribe(res => {
+      console.log(res)
     });
   }
 }
