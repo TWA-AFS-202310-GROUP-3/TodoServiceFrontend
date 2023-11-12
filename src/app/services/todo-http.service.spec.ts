@@ -11,27 +11,32 @@ function asyncData<T>(data : T){
 describe('TodoHttpService', () => {
   let service: TodoHttpService;
   let httpClientSpy: jasmine.SpyObj<HttpClient>
+  const postItem = {
+    id: 1,
+    title: "buy milk",
+    description : "buy a bottle of milk",
+    isDone: false
+  }
+  const expectedResponse = {
+    id: 1,
+    title: "buy milk",
+    description : "buy a bottle of milk",
+    isDone: false
+  }
+  const mockId = 1;
 
   beforeEach(() => {
-    
+    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get','post','put','delete'])
+    service = new TodoHttpService(httpClientSpy)
   });
 
   it('should be created', () => {
-    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get'])
-    service = new TodoHttpService(httpClientSpy)
     expect(service).toBeTruthy();
   });
 
   it('should get all todo items when call getAll', () => {
-    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get'])
-    service = new TodoHttpService(httpClientSpy)
     httpClientSpy.get.and.returnValue(
-      asyncData([{
-      id: 1,
-      title: "buy milk",
-      description : "buy a bottle of milk",
-      isDone: false
-    }])
+      asyncData([expectedResponse])
     )
 
     service.getAll().subscribe(data => {
@@ -42,20 +47,7 @@ describe('TodoHttpService', () => {
   })
 
   it('should create a todo item and return the created when call create', () => {
-    httpClientSpy = jasmine.createSpyObj('HttpClient', ['post'])
-    service = new TodoHttpService(httpClientSpy)
-    const postItem = {
-      id: 1,
-      title: "buy milk",
-      description : "buy a bottle of milk",
-      isDone: false
-    }
-    const expectedResponse = {
-      id: 1,
-      title: "buy milk",
-      description : "buy a bottle of milk",
-      isDone: false
-    }
+    
     const url = 'https://localhost:44309/ToDoItem'
 
     httpClientSpy.post.and.returnValue(asyncData(postItem))
@@ -68,15 +60,6 @@ describe('TodoHttpService', () => {
   })
 
   it('should return item by ID when call getById given id', () => {
-    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get'])
-    service = new TodoHttpService(httpClientSpy)
-    const mockId = 1;
-    const expectedResponse = {
-      id: 1,
-      title: "buy milk",
-      description : "buy a bottle of milk",
-      isDone: false
-    }
 
     httpClientSpy.get.and.returnValue(asyncData(expectedResponse))
 
@@ -87,16 +70,6 @@ describe('TodoHttpService', () => {
   })
 
   it('should return deleted item when call delete given id', () => {
-    httpClientSpy = jasmine.createSpyObj('HttpClient', ['delete'])
-    service = new TodoHttpService(httpClientSpy)
-    const mockId = 1;
-    const expectedResponse = {
-      id: 1,
-      title: "buy milk",
-      description : "buy a bottle of milk",
-      isDone: false
-    }
-
     httpClientSpy.delete.and.returnValue(asyncData(expectedResponse))
 
     service.delete(mockId).subscribe(res => {
@@ -106,21 +79,6 @@ describe('TodoHttpService', () => {
   })
 
   it('should return the updated item when call update given id and new item', () => {
-    httpClientSpy = jasmine.createSpyObj('HttpClient', ['put'])
-    service = new TodoHttpService(httpClientSpy)
-    const postItem = {
-      id: 1,
-      title: "buy milk",
-      description : "buy a bottle of milk",
-      isDone: false
-    }
-    const expectedResponse = {
-      id: 1,
-      title: "buy milk",
-      description : "buy a bottle of milk",
-      isDone: false
-    }
-    const mockId = 1
     const url = `https://localhost:44309/ToDoItem/${mockId}`
 
     httpClientSpy.put.and.returnValue(asyncData(postItem))
