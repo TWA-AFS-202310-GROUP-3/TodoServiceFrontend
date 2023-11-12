@@ -20,11 +20,11 @@ export class TodoDetailComponent {
   ) {}
 
   ngOnInit() {
-    const id = this.activatedRouter.snapshot.paramMap.get('detailId');
+    const id = Number(this.activatedRouter.snapshot.paramMap.get('detailId'));
     if (id != null) {
       this.todoHttpService.getItemById(id).subscribe((todoItem) => {
         this.item = todoItem;
-        this.currentId = Number(id);
+        this.currentId = id;
       });
     }
   }

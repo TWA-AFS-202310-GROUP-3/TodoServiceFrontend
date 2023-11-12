@@ -14,7 +14,12 @@ describe('TodoHttpService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
+    httpClientSpy = jasmine.createSpyObj('HttpClient', [
+      'get',
+      'post',
+      'delete',
+      'put',
+    ]);
     // service = TestBed.inject(TodoHttpService);
     service = new TodoHttpService(httpClientSpy);
   });
@@ -39,5 +44,45 @@ describe('TodoHttpService', () => {
       expect(data.length).toEqual(1);
     });
     expect(httpClientSpy.get.calls.count()).toEqual(1);
+  });
+
+  it('should create a new item and return it when call create', () => {
+    httpClientSpy.post.and.returnValue(
+      asyncData([
+        {
+          id: 0,
+          title: 'Home work',
+          description: 'Have to complete home work',
+          isDone: false,
+        },
+      ])
+    );
+    service.create('new item', 'test case').subscribe((data) => {
+      expect(data[0]).toEqual({
+        id: 0,
+        title: 'Home work',
+        description: 'Have to complete home work',
+        isDone: false,
+      });
+    });
+  });
+
+  it('should get correct item when call getItemById', () => {
+    httpClientSpy.get.and.returnValue(
+      asyncData([
+        {
+          id: 0,
+          title: 'Home work',
+          description: 'Have to complete home work',
+          isDone: false,
+        },
+      ])
+    );
+    service.getItemById(0).subscribe((data) => {
+      expect(data.id).toEqual(0);
+      expect(data.title).toEqual('Home work');
+      expect(data.description).toEqual('Have to complete home work');
+      expect(data.isDone).toEqual(false);
+    });
   });
 });
