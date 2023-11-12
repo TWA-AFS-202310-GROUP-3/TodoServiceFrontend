@@ -23,7 +23,7 @@ export class TodoListComponent {
   }
 
   refreshList(){
-    this.todoHttpService.getAll().subscribe((todoItems: ToDoItem[]) => {
+    this.todoHttpService.getAll().subscribe((todoItems) => {
       this.items = todoItems;
     });
 
@@ -37,8 +37,9 @@ export class TodoListComponent {
   }
 
   onDelete(id:number){
-    this.todoHttpService.delete(id).subscribe(()=>this.refreshList)
+    this.todoHttpService.delete(id).subscribe(()=>{
+      this.refreshList
+    })
   }
-
   
 }

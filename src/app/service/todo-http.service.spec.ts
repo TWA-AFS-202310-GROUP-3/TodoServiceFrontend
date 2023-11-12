@@ -9,11 +9,10 @@ function asyncData<T>(data: T) {
 }
 describe('TodoHttpService', () => {
   let service: TodoHttpService;
-  let httpClientSpy: jasmine.SpyObj<HttpClient>; //define an object for testing
+  let httpClientSpy: jasmine.SpyObj<HttpClient>;
 
   beforeEach(() => {
-    //TestBed.configureTestingModule({});
-    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
+    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get','put','post','delete']);
     service = new TodoHttpService(httpClientSpy)
   });
 
@@ -36,5 +35,12 @@ describe('TodoHttpService', () => {
     })
 
     expect(httpClientSpy.get.calls.count()).toEqual(1)
+  });
+  
+  it('should delete item when call delete',() =>{
+    httpClientSpy.delete.and.returnValue(asyncData({}));
+
+    service.delete(0).subscribe();
+    expect(httpClientSpy.delete.calls.count()).toEqual(1);
   });
 });

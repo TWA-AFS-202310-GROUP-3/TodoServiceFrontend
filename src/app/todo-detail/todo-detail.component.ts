@@ -17,4 +17,8 @@ export class TodoDetailComponent {
     const id = this.activatedRouter.snapshot.paramMap.get('detailId') //get id from url
     this.item = this.TodoService.getItemById(Number(id))
   }
+
+  onUpdate(){
+    
+  }
 }

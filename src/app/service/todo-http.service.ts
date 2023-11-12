@@ -21,7 +21,9 @@ export class TodoHttpService {
     })
   }
 
-  delete(id:number){
-    return this.httpClient.delete(`${this.todoItemURL}+{id}`);
+  delete(id: number) {
+    return this.httpClient.delete(`${this.todoItemURL}+${id}`);
   }
+
+  
 }
