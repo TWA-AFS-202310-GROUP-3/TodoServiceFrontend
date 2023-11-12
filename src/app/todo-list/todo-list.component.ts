@@ -45,4 +45,8 @@ export class TodoListComponent {
       this.onRreshList();
     });
   }
+
+  trackItem(index : number, item : ToDoItem){
+    return item.id
+  }
 }
