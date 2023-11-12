@@ -1,20 +1,25 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { TodoHttpService } from '../services/todo-http.service';
 import { ToDoItem } from 'src/model/ToDoItem';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'create-todo-item',
   templateUrl: './create-todo-item.component.html',
   styleUrls: ['./create-todo-item.component.css'],
 })
-export class CreateTodoItemComponent {
+export class CreateTodoItemComponent implements OnDestroy {
   @Output() created = new EventEmitter();
-
+  subscription : Subscription | undefined
   constructor(
     private formBuilder: FormBuilder, 
     private todoHttpService : TodoHttpService
     ) {}
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
+  }
 
   todoForm = this.formBuilder.group({
     title: ['', Validators.required],
@@ -30,7 +35,7 @@ export class CreateTodoItemComponent {
         description : formValues.description,
         isDone : false
       }
-      this.todoHttpService.create(item).subscribe(() => {
+      this.subscription = this.todoHttpService.create(item).subscribe(() => {
         this.todoForm.reset()
         this.created.emit()
       })

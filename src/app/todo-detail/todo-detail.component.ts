@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToDoItem } from 'src/model/ToDoItem';
 import { TodoHttpService } from '../services/todo-http.service';
@@ -10,20 +10,22 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './todo-detail.component.html',
   styleUrls: ['./todo-detail.component.css'],
 })
-export class TodoDetailComponent {
+export class TodoDetailComponent implements OnDestroy{
+  
   item : ToDoItem | undefined
   item_id = ''
   item_title = ''
   item_description = ''
   item_isDone = false
-  subscription : Subscription | undefined
+  subscriptionGet : Subscription | undefined
+  subscriptionUpdate : Subscription | undefined
   constructor(private activatedRouter: ActivatedRoute, private http : TodoHttpService){
   }
 
   ngOnInit(){
     const id = this.activatedRouter.snapshot.paramMap.get('id');
     if (id) {
-      this.subscription = this.http.getById(Number(id)).subscribe(res => {
+      this.subscriptionGet = this.http.getById(Number(id)).subscribe(res => {
         this.item = res
         this.item_title = res.title
         this.item_description = res.description
@@ -41,8 +43,13 @@ export class TodoDetailComponent {
       description : this.item_description,
       isDone : this.item_isDone
     }
-    this.http.update(Number(this.item_id), updatedItem).subscribe(res => {
+    this.subscriptionUpdate = this.http.update(Number(this.item_id), updatedItem).subscribe(res => {
       console.log("updated successfully!")
     });
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptionUpdate?.unsubscribe();
+    this.subscriptionGet?.unsubscribe();
   }
 }
