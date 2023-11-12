@@ -17,8 +17,9 @@
         Done
       </button>
       <button (click)="onGoToDetail(item.id)">View Detail</button>
+      <button (click)="onDelete(item.id)">Delete</button>
     </td>
   </tr>
 </table>
 
-<app-create-todo></app-create-todo>
+<app-create-todo (created)="refreshList()"></app-create-todo>

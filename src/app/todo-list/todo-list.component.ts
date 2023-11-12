@@ -17,11 +17,15 @@ export class TodoListComponent {
     private router: Router
   ) {}
   ngOnInit() {
-    /*在组件初始化时就会调用ngOnInit() */
+    /* ##在组件初始化时就会调用ngOnInit() */
+    this.refreshList();
+
+    // ##this.items = this.todoService.getAll(); //  in memory的service
+  }
+  refreshList() {
     this.todoHttpService.getAll().subscribe((todoItems) => {
       this.items = todoItems;
     });
-    // this.items = this.todoService.getAll(); //  in memory的service
   }
 
   onMarkDown(id: number) {
@@ -31,6 +35,10 @@ export class TodoListComponent {
   onGoToDetail(id: number) {
     this.router.navigateByUrl(
       `/detail/${id}`
-    ); /*注意不是单引号‘’，而是··来写url */
+    ); /*##注意不是单引号‘’，而是··来写url */
+  }
+
+  onDelete(id:number){
+    this.todoHttpService.delete(id.toString()).subscribe(()=>this.refreshList());
   }
 }
