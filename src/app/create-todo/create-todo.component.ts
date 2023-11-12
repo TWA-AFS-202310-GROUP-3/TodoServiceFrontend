@@ -24,8 +24,6 @@ export class CreateTodoComponent {
   onSubmit() {
     const formValues = this.todoForm.value;
     if (formValues.title && formValues.description) {
-      // this.todoService.create(formValues.title, formValues.description)
-      // this.todoForm.reset()
       this.todoHttpService
         .create(formValues.title, formValues.description)
         .subscribe(() => {
