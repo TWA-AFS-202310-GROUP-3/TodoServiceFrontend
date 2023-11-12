@@ -17,7 +17,7 @@ export class TodoHttpService {
     return this.http.post('https://localhost:44309/ToDoItem', item);
   }
 
-  getById(id : string){
+  getById(id : number){
     return this.http.get<ToDoItem>(`https://localhost:44309/ToDoItem/${id}`)
   }
 

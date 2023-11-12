@@ -23,7 +23,7 @@ export class TodoDetailComponent {
   ngOnInit(){
     const id = this.activatedRouter.snapshot.paramMap.get('id');
     if (id) {
-      this.subscription = this.http.getById(id).subscribe(res => {
+      this.subscription = this.http.getById(Number(id)).subscribe(res => {
         this.item = res
         this.item_title = res.title
         this.item_description = res.description
@@ -42,7 +42,7 @@ export class TodoDetailComponent {
       isDone : this.item_isDone
     }
     this.http.update(Number(this.item_id), updatedItem).subscribe(res => {
-      console.log(res)
+      console.log("updated successfully!")
     });
   }
 }

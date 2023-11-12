@@ -58,7 +58,7 @@ describe('TodoHttpService', () => {
     }
     const url = 'https://localhost:44309/ToDoItem'
 
-    httpClientSpy.post.and.returnValue(asyncData([postItem]))
+    httpClientSpy.post.and.returnValue(asyncData(postItem))
 
     service.create(postItem).subscribe(res => {
       expect(res).toEqual(expectedResponse)
@@ -66,6 +66,46 @@ describe('TodoHttpService', () => {
     expect(httpClientSpy.post).toHaveBeenCalledWith(url, postItem)
     
   })
+
+  it('should return item by ID when call getById given id', () => {
+    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get'])
+    service = new TodoHttpService(httpClientSpy)
+    const mockId = 1;
+    const expectedResponse = {
+      id: 1,
+      title: "buy milk",
+      description : "buy a bottle of milk",
+      isDone: false
+    }
+
+    httpClientSpy.get.and.returnValue(asyncData(expectedResponse))
+
+    service.getById(mockId).subscribe(res => {
+      expect(res).toEqual(expectedResponse)
+    })
+    expect(httpClientSpy.get.calls.count()).toEqual(1)
+  })
+
+  it('should return deleted item when call delete given id', () => {
+    httpClientSpy = jasmine.createSpyObj('HttpClient', ['delete'])
+    service = new TodoHttpService(httpClientSpy)
+    const mockId = 1;
+    const expectedResponse = {
+      id: 1,
+      title: "buy milk",
+      description : "buy a bottle of milk",
+      isDone: false
+    }
+
+    httpClientSpy.delete.and.returnValue(asyncData(expectedResponse))
+
+    service.delete(mockId).subscribe(res => {
+      expect(res).toEqual(expectedResponse)
+    })
+    expect(httpClientSpy.delete).toHaveBeenCalled()
+  })
+
+  
 
   
 });
