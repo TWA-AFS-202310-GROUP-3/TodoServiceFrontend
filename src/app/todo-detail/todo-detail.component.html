@@ -1,0 +1,14 @@
+<div>Todo Detail</div>
+<div *ngIf="item">
+  <div>Id: {{ item.id }}</div>
+  <div>
+    <span>Title: {{ item.title }} </span>
+    <input type="text" [(ngModel)]="item.title" />
+  </div>
+  <div>
+    <span>Description: {{ item.description }} </span>
+    <input type="text" [(ngModel)]="item.description" />
+  </div>
+  <div>IsDone: {{ item.isDone }}</div>
+</div>
+<button (click)="onUpdate()">Update</button>
