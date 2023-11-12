@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ToDoItem } from 'src/model/ToDoItem';
 import { TodoService } from '../service/todo.service';
 import { TodoHttpService } from '../service/todo-http.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-todo-detail',
@@ -11,9 +12,11 @@ import { TodoHttpService } from '../service/todo-http.service';
 })
 export class TodoDetailComponent {
   item: ToDoItem | undefined;
+  public currentId: number | undefined;
   constructor(
     private activatedRouter: ActivatedRoute,
-    private todoHttpService: TodoHttpService
+    private todoHttpService: TodoHttpService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -21,8 +24,19 @@ export class TodoDetailComponent {
     if (id != null) {
       this.todoHttpService.getItemById(id).subscribe((todoItem) => {
         this.item = todoItem;
+        this.currentId = Number(id);
       });
     }
-    console.log(id);
+  }
+
+  onUpdate() {
+    if (this.item) {
+      this.todoHttpService
+        .updateCurrentItem(this.currentId!, this.item)
+        .subscribe((todoItem) => {
+          this.item = todoItem;
+          this.router.navigateByUrl('');
+        });
+    }
   }
 }

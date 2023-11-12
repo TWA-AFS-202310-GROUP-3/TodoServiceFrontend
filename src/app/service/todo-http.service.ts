@@ -32,4 +32,11 @@ export class TodoHttpService {
   deleteItemById(id: number) {
     return this.httpClient.delete(`https://localhost:44309/ToDoItem/${id}`);
   }
+
+  updateCurrentItem(id: number, item: ToDoItem) {
+    return this.httpClient.put<ToDoItem>(
+      `https://localhost:44309/ToDoItem/${id}`,
+      item
+    );
+  }
 }
