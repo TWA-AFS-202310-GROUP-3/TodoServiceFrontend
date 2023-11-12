@@ -19,8 +19,10 @@ export class TodoDetailComponent {
   ) {}
 
   todoForm = this.formBuilder.group({
+    id:0,
     title: '',
     description: '',
+    isDone: false
   });
 
   ngOnInit() {
@@ -28,15 +30,24 @@ export class TodoDetailComponent {
     console.log(id);
     this.todoHttpService.getItemById(Number(id)).subscribe((item) => {
       this.item = item;
+      console.log('init', item.isDone);
+      this.todoForm.setValue({
+        id: item.id,
+        title: item.title,
+        description: item.description,
+        isDone: item.isDone
+      })
     });
-    /*路由里拿出的都是string或者undefined */
+    
+    /*##路由里拿出的都是string或者undefined */
   }
   onUpdate() {
     const formValues = this.todoForm.value;
     if (this.item && formValues.title && formValues.description) {
+      console.log('update', this.item.isDone);
       this.item.title = formValues.title;
       this.item.description = formValues.description;
-      this.todoHttpService.update(this.item).subscribe();
+      this.todoHttpService.update(this.item.id, this.item).subscribe();
     }
   }
 }

@@ -31,9 +31,9 @@ export class TodoHttpService {
     );
   }
 
-  update(todoItem: ToDoItem) {
+  update(id: number, todoItem: ToDoItem) {
     return this.httpClient.put<ToDoItem>(
-      `https://localhost:44309/ToDoItems/${todoItem.id}`,
+      `https://localhost:44309/ToDoItems/${id}`,
       todoItem
     );
   }

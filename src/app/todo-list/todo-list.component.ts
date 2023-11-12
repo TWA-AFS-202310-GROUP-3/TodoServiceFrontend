@@ -12,15 +12,12 @@ import { TodoHttpService } from '../service/todo-http.service';
 export class TodoListComponent {
   items: ToDoItem[] = [];
   constructor(
-    private todoService: TodoService,
     private todoHttpService: TodoHttpService,
     private router: Router
   ) {}
   ngOnInit() {
     /* ##在组件初始化时就会调用ngOnInit() */
     this.refreshList();
-
-    // ##this.items = this.todoService.getAll(); //  in memory的service
   }
   refreshList() {
     this.todoHttpService.getAll().subscribe((todoItems) => {
@@ -28,8 +25,9 @@ export class TodoListComponent {
     });
   }
 
-  onMarkDown(id: number) {
-    this.todoService.markDone(id);
+  onMarkDown(todoItem: ToDoItem) {
+    todoItem.isDone = true;
+    this.todoHttpService.update(todoItem.id, todoItem).subscribe();
   }
 
   onGoToDetail(id: number) {
@@ -38,7 +36,7 @@ export class TodoListComponent {
     ); /*##注意不是单引号‘’，而是··来写url */
   }
 
-  onDelete(id:number){
-    this.todoHttpService.delete(id).subscribe(()=>this.refreshList());
+  onDelete(id: number) {
+    this.todoHttpService.delete(id).subscribe(() => this.refreshList());
   }
 }
