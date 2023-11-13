@@ -1,0 +1,28 @@
+<div class="col-md-4 offset-md-4">
+
+    <form #f="ngForm" class="box-general">
+        <div class="form-group">
+            <div class="input-group" style="margin-right: 6px;">
+                <span>Item ID </span>
+                <label>: {{ item_id}}</label>
+            </div>
+            <div class="input-group" style="margin-right: 6px;">
+                <span class="input-group-text" id="basic-addon1">Ttile</span>
+                <input name='title' #title="ngModel" required [(ngModel)]="item_title"  class="form-control" type="text">
+            </div>
+            <div class="input-group" style="margin-right: 6px;">
+                <span class="input-group-text" id="basic-addon1">Description</span>
+                <input name='desc' #desc="ngModel" required [(ngModel)]="item_description"  class="form-control" type="text">
+            </div>
+            
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="isDone" name='isDone' #isDone="ngModel" required [(ngModel)]="item_isDone">
+                <label class="form-check-label" for="isDone">IsDone:</label>
+                <label>{{ item_isDone }}</label>
+            </div>
+            
+            <!-- <div *ngIf="discription.errors?.['required']" class="alert alert-danger">Discription is required</div> -->
+        </div>
+        <button class="col-3 btn btn-info" (click)="onSave()">Save</button>
+    </form>
+</div>

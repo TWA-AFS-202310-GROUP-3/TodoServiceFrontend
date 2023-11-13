@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+
 table {
   border-collapse: collapse;
 }
@@ -53,4 +55,12 @@ button:hover {
 
 button:active {
   background-color: #005cbf;
+}
+
+button[disabled] {
+  background-color: gray;
+}
+
+button.delete {
+  background-color: red;
 }

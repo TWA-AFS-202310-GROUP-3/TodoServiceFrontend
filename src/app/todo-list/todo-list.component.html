@@ -1,0 +1,23 @@
+<h2>TodoList</h2>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>IsDone</th>
+        <th>Action</th>
+    </tr>
+    <tr *ngFor="let item of items, trackBy : trackItem">
+        <td>{{ item.id }}</td>
+        <td>{{ item.title }}</td>
+        <td>{{ item.description }}</td>
+        <td>{{ item.isDone }}</td>
+        <td>
+            <button [disabled]="item.isDone" (click)="onMarkDone(item.id)">Done</button>
+            <button (click)="onGoToDetail(item.id)">View Detail</button>
+            <button (click)="onDelete(item.id)" class="delete">Delete</button>
+        </td>
+    </tr>
+</table>
+
+<create-todo-item (created)="onRefreshList()"></create-todo-item>
